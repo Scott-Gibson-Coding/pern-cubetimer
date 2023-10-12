@@ -1,0 +1,2 @@
+# ignoring db.js file until env vars are used
+db.js
