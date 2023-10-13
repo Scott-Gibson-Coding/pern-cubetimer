@@ -1,11 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
+import CubetimerPage from "./CubetimerPage";
 
 function App() {
-  return (
-    <Fragment>
-      <h1>Main Page</h1>
-    </Fragment>
-  );
+  return <CubetimerPage />;
 }
 
 export default App;
