@@ -3,7 +3,7 @@ const app = express();
 const port = 5050;
 
 // used to query to db
-const pool = require("./db");
+const pool = require("./db_connect");
 
 // setup middleware
 app.use(express.json());
