@@ -38,9 +38,6 @@ export const getScramble = (length = 20) => {
       let move = sides[side] + directions[getRandomInt(directions.length)];
       scramble.push(move);
 
-      console.log(move);
-      console.log(isOpposite(last_side, side));
-
       last_last_side = last_side;
       last_side = side;
     }
