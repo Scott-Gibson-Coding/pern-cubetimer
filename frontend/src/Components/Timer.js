@@ -14,10 +14,10 @@ const Timer = () => {
   /* Timer text formatting */
 
   useEffect(() => {
-    setTimerText(formatTime());
+    setTimerText(formatTime(time));
   }, [time]);
 
-  const formatTime = () => {
+  const formatTime = (time) => {
     let timeString = "MM:SS.sss";
     let m = Math.floor(time / 1000 / 60).toString();
     let s = Math.floor((time / 1000) % 60).toString();
@@ -47,22 +47,25 @@ const Timer = () => {
   const handleSpaceDown = () => {
     if (intervalRef.current !== 0) {
       clearInterval(intervalRef.current);
+      intervalRef.current = 0;
+      setScramble(() => getScramble());
     }
   };
 
   /* Document keyboard event handling */
 
-  let once = false; // flag to keep onkeydown to only trigger once
+  //   let once = false; // flag to keep onkeydown to only trigger once
+  const [once, setOnce] = useState(false);
   document.onkeyup = (e) => {
     if (e.key === " ") {
       handleSpaceUp();
-      once = false;
+      setOnce(false);
     }
   };
   document.onkeydown = (e) => {
     if (!once && e.key === " ") {
       handleSpaceDown();
-      once = true;
+      setOnce(true);
     }
   };
 
