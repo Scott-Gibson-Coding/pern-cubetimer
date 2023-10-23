@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getScramble } from "../Utils/CubeUtils";
 
-const Timer = () => {
+const Timer = (props) => {
+  /*
+   * props
+   *   addTime: function from CubetimerPage that updates the
+   *   session with a new time.
+   */
+  const { addTime } = props;
+
   /* State vars */
 
   const [scramble, setScramble] = useState(getScramble);
@@ -48,6 +55,7 @@ const Timer = () => {
     if (intervalRef.current !== 0) {
       clearInterval(intervalRef.current);
       intervalRef.current = 0;
+      addTime(time / 1000);
       setScramble(() => getScramble());
     }
   };
