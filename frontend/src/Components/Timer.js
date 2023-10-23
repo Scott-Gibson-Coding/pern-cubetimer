@@ -31,7 +31,7 @@ const Timer = (props) => {
     let ms = Math.floor(time % 1000).toString();
     m = m.padStart(2, "0");
     s = s.padStart(2, "0");
-    ms = ms.padEnd(3, "0");
+    ms = ms.padStart(3, "0");
     timeString = timeString.replace("MM", m);
     timeString = timeString.replace("SS", s);
     timeString = timeString.replace("sss", ms);

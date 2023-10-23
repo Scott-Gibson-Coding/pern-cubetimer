@@ -7,12 +7,12 @@ const SolvetimesTable = () => {
   return (
     <table className="table table-sm table-primary table-borderless border border-2 border-dark">
       <tbody>
-        {times.map((time, id) => (
-          <tr key={id}>
+        {times.map(({ time_id, solvetime }, row_num) => (
+          <tr key={row_num}>
             <th scope="row" className="text-end">
-              {id}:
+              {times.length - row_num}:
             </th>
-            <td className="text-center">{time.toFixed(3)}</td>
+            <td className="text-center">{solvetime.toFixed(3)}</td>
             <td>x</td>
           </tr>
         ))}

@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
 const port = 5050;
 
@@ -7,10 +9,11 @@ const pool = require("./db_connect");
 
 // setup middleware
 app.use(express.json());
+app.use(cors());
 
 // solvetimes GET - return all solves and session best/avgs
 app.get("/solvetimes", async (req, res) => {
-  const command = "SELECT * FROM solvetimes";
+  const command = "SELECT * FROM solvetimes ORDER BY 1 DESC";
 
   try {
     const response = await pool.query(command);
@@ -29,7 +32,7 @@ app.post("/solvetimes", async (req, res) => {
 
   try {
     const response = await pool.query(command, values);
-    res.send(response);
+    res.send(response.rows[0]);
   } catch (error) {
     console.error(error);
   }
