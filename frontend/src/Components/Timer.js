@@ -26,6 +26,8 @@ const Timer = (props) => {
 
   const formatTime = (time) => {
     let timeString = "MM:SS.sss";
+    time = time.toFixed();
+
     let m = Math.floor(time / 1000 / 60).toString();
     let s = Math.floor((time / 1000) % 60).toString();
     let ms = Math.floor(time % 1000).toString();
@@ -43,7 +45,7 @@ const Timer = (props) => {
 
   const handleSpaceUp = () => {
     if (!running) {
-      const fps = 30; // how often the timer updates per second
+      const fps = 60; // how often the timer updates per second
       const start = performance.now();
       intervalRef.current = setInterval(() => {
         setTime(performance.now() - start);
