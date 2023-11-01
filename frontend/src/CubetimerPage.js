@@ -23,10 +23,7 @@ const CubetimerPage = () => {
   }, []);
 
   /* Callback function - pass to Timer component */
-  const addTime = async (time = 0) => {
-    // const newTime = { time_id: 0, solvetime: time }; // Assumes first time in array is the most recent in the db
-    // await setTimes((prevTimes) => [newTime, ...prevTimes]);
-
+  const addTime = async (time) => {
     const url = "http://localhost:5050/solvetimes";
     fetch(url, {
       method: "POST",
@@ -45,6 +42,11 @@ const CubetimerPage = () => {
       });
   };
 
+  /* callback function - update the times array */
+  const updateTimes = (newTimes) => {
+    // setTimes(newTimes);
+  };
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -53,7 +55,7 @@ const CubetimerPage = () => {
         </div>
         <div className="col-4 border border-3 border-success">
           <TimesContext.Provider value={times}>
-            <SessionStats />
+            <SessionStats updateTimes={updateTimes} />
           </TimesContext.Provider>
         </div>
       </div>
