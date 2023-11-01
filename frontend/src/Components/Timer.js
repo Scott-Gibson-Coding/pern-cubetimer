@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getScramble } from "../Utils/CubeUtils";
+import { getScramble, formatTime } from "../Utils/CubeUtils";
 
 const Timer = (props) => {
   /*
@@ -16,6 +16,9 @@ const Timer = (props) => {
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
 
+  const [keyDownHeld, setKeyDownHeld] = useState(false); //
+
+  // reference var for the timer interval
   let intervalRef = useRef(0);
 
   /* Timer text formatting */
@@ -23,23 +26,6 @@ const Timer = (props) => {
   useEffect(() => {
     setTimerText(formatTime(time));
   }, [time]);
-
-  const formatTime = (time) => {
-    let timeString = "MM:SS.sss";
-    time = time.toFixed();
-
-    let m = Math.floor(time / 1000 / 60).toString();
-    let s = Math.floor((time / 1000) % 60).toString();
-    let ms = Math.floor(time % 1000).toString();
-    m = m.padStart(2, "0");
-    s = s.padStart(2, "0");
-    ms = ms.padStart(3, "0");
-    timeString = timeString.replace("MM", m);
-    timeString = timeString.replace("SS", s);
-    timeString = timeString.replace("sss", ms);
-
-    return timeString;
-  };
 
   /* Spacebar interactivity */
 
@@ -57,25 +43,23 @@ const Timer = (props) => {
     if (intervalRef.current !== 0) {
       clearInterval(intervalRef.current);
       intervalRef.current = 0;
-      addTime(time / 1000);
+      addTime(Math.round(time));
       setScramble(() => getScramble());
     }
   };
 
   /* Document keyboard event handling */
 
-  //   let once = false; // flag to keep onkeydown to only trigger once
-  const [once, setOnce] = useState(false);
   document.onkeyup = (e) => {
     if (e.key === " ") {
       handleSpaceUp();
-      setOnce(false);
+      setKeyDownHeld(false);
     }
   };
   document.onkeydown = (e) => {
-    if (!once && e.key === " ") {
+    if (!keyDownHeld && e.key === " ") {
       handleSpaceDown();
-      setOnce(true);
+      setKeyDownHeld(true);
     }
   };
 

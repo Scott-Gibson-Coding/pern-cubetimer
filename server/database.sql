@@ -2,7 +2,11 @@
 
 CREATE DATABASE perncubetimer;
 
-CREATE TABLE solvetimes (
+-- Table: public.solvetimes
+
+-- DROP TABLE IF EXISTS public.solvetimes;
+
+CREATE TABLE IF NOT EXISTS public.solvetimes (
     time_id SERIAL PRIMARY KEY,
-    solvetime double precision NOT NULL
+    solvetime INTEGER NOT NULL
 );

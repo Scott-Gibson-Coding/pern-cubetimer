@@ -45,3 +45,23 @@ export const getScramble = (length = 20) => {
 
   return scramble.join(" ");
 };
+
+/*
+ * Formats time in milliseconds to MM:SS.sss format
+ */
+export const formatTime = (time) => {
+  let timeString = "MM:SS.sss";
+  time = Math.round(time);
+
+  let m = Math.floor(time / 1000 / 60).toString();
+  let s = Math.floor((time / 1000) % 60).toString();
+  let ms = Math.floor(time % 1000).toString();
+  m = m.padStart(2, "0");
+  s = s.padStart(2, "0");
+  ms = ms.padStart(3, "0");
+  timeString = timeString.replace("MM", m);
+  timeString = timeString.replace("SS", s);
+  timeString = timeString.replace("sss", ms);
+
+  return timeString;
+};

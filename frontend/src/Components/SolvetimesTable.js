@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { TimesContext } from "../CubetimerPage";
+import { formatTime } from "../Utils/CubeUtils";
 
 const SolvetimesTable = () => {
   const times = useContext(TimesContext);
@@ -12,7 +13,7 @@ const SolvetimesTable = () => {
             <th scope="row" className="text-end">
               {times.length - row_num}:
             </th>
-            <td className="text-center">{solvetime.toFixed(3)}</td>
+            <td className="text-center">{formatTime(solvetime)}</td>
             <td>x</td>
           </tr>
         ))}
