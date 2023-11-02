@@ -42,11 +42,6 @@ const CubetimerPage = () => {
       });
   };
 
-  /* callback function - update the times array */
-  const updateTimes = (newTimes) => {
-    // setTimes(newTimes);
-  };
-
   return (
     <div className="container-fluid">
       <div className="row">
@@ -54,8 +49,8 @@ const CubetimerPage = () => {
           <Timer addTime={addTime} />
         </div>
         <div className="col-4 border border-3 border-success">
-          <TimesContext.Provider value={times}>
-            <SessionStats updateTimes={updateTimes} />
+          <TimesContext.Provider value={{ times, setTimes }}>
+            <SessionStats />
           </TimesContext.Provider>
         </div>
       </div>
