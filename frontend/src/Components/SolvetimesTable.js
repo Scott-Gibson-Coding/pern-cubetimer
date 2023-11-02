@@ -11,7 +11,7 @@ const SolvetimesTable = () => {
       .then((response) => {
         console.log(response);
         setTimes((times) =>
-          times.filter(({ time_id }) => time_id === delete_id)
+          times.filter(({ time_id }) => time_id !== delete_id)
         );
       })
       .catch((error) => {
@@ -22,7 +22,7 @@ const SolvetimesTable = () => {
   return (
     <div
       className="table-responsive overflow-auto border border-2 border-dark"
-      style={{ height: "30vh" }}
+      style={{ height: "30vh", width: "80%" }}
     >
       <table className="table table-sm table-primary table-borderless m-0">
         <tbody>
@@ -33,7 +33,7 @@ const SolvetimesTable = () => {
               </th>
               <td className="text-center">{formatTime(solvetime)}</td>
               <td>
-                <a href="" onClick={() => deleteTime(time_id)}>
+                <a href="#" onClick={() => deleteTime(time_id)}>
                   x
                 </a>
               </td>

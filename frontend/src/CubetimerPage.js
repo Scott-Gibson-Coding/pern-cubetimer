@@ -45,10 +45,10 @@ const CubetimerPage = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-8 border border-3 border-primary">
+        <div className="col-9 border border-3 border-primary">
           <Timer addTime={addTime} />
         </div>
-        <div className="col-4 border border-3 border-success">
+        <div className="col-3 border border-3 border-success">
           <TimesContext.Provider value={{ times, setTimes }}>
             <SessionStats />
           </TimesContext.Provider>
